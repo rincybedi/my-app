@@ -1,0 +1,7 @@
+
+export const actionTypes = Object.freeze({
+    // Crypto
+    FETCH_CRYPTO_START: "FETCH_CRYPTO_START",
+    FETCH_CRYPTO_SUCCESS: "FETCH_CRYPTO_SUCCESS",
+    FETCH_CRYPTO_ERROR: 'FETCH_CRYPTO_ERROR',
+});
