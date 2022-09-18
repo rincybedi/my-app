@@ -1,18 +1,11 @@
-import DataTable from "./components/DataGrid";
-
-
-/**
- * Import redux related libraries
- */
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { rootReducer } from "./redux/configureStore";
+import HomePage from "./components/HomePage";
+import './App.scss'
 
-/**
- * Setup Redux Store
- */
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
@@ -21,14 +14,13 @@ const store = createStore(
 function App() {
   return (
     <Provider store={store}>
-      Test
-      <DataTable />
+      <HomePage />
     </Provider>
   );
 }
 
 export default App;
 
-export const dispatch = (data: Object) => {
+export const dispatch = (data) => {
   store.dispatch(data);
 };

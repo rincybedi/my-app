@@ -21,7 +21,6 @@ export default (
         isApiLoading: true,
       };
     case actionTypes.FETCH_CRYPTO_SUCCESS:
-      debugger
       return {
         ...state,
         isApiLoading: false,

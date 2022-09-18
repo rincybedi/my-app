@@ -1,62 +1,41 @@
 import * as React from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { getCryptoData } from '../redux/actions/crypto';
-import { useSelector } from 'react-redux';
-import { useEffect , useState} from 'react';
+import { useTable } from 'react-table'
 
-const columns= [
-  { field: 'rank', headerName: 'j', width: 130 },
-  { field: 'symbol', headerName: 'Symbol', width: 130 },
-  {
-    field: 'name',
-    headerName: 'Name',
-    width: 90,
-  },
-  {
-    field: 'supply',
-    headerName: 'Supply',
-    width: 90,
-  },
-  {
-    field: 'maxSupply',
-    headerName: 'Max Supply',
-    width: 90,
-  },
-  {
-    field: 'name',
-    headerName: 'Name',
-    width: 90,
-  },
+export const DataGrid = ({ columns, data }) => {
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+  } = useTable({
+    columns,
+    data,
+  })
 
-  
-];
-
-export default function DataTable() {
-  const limit = 50
-  const [offset, setOffset] = useState(0)
-  
-  useEffect(() => {
-    getCryptoData(offset, limit);
-  }, [offset])
-
-  const cryptoState = useSelector(
-    (state) => state.cryptoState);
-
-  const { isApiLoading, cryptoResult =[] } = cryptoState;
-
-  const handleLoadMore = () => {
-    setOffset(prevOffset => prevOffset + 50); 
-  }
-  
   return (
-   <>
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={cryptoResult}
-        columns={columns}
-        pagination={false}
-      />
-    </div>
-    <button onClick={handleLoadMore}>Load More</button></>
-  );
+    <table {...getTableProps()}>
+      <thead>
+        {headerGroups.map(headerGroup => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map(column => (
+              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <tbody {...getTableBodyProps()}>
+        {rows.map((row, i) => {
+          prepareRow(row)
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map(cell => {
+                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              })}
+            </tr>
+          )
+        })}
+      </tbody>
+    </table>
+  )
 }

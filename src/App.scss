@@ -1,0 +1,42 @@
+$color: black;
+
+#divTableContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+
+  table {
+    border-spacing: 0;
+    border: 1px solid $color;
+
+    tr {
+      :last-child {
+        td {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    th,
+    td {
+      margin: 0;
+      padding: 0.5rem;
+      border-bottom: 1px solid $color;
+
+      .success {
+        color: green;
+      }
+
+      .danger {
+        color: red
+      }
+
+      :last-child {
+        border-right: 0;
+      }
+    }
+  }
+}
