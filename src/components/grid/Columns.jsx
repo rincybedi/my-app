@@ -1,4 +1,4 @@
-import { formatChangePercentage, formatCurrency } from "../utils/util";
+import { formatChangePercentage, formatCurrency } from "../../utils/util";
 
 export const columns = [
   { accessor: 'rank', Header: 'Rank' },

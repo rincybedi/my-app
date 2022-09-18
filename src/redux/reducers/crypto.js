@@ -1,10 +1,8 @@
 import { actionTypes } from "../actionTypes";
 
-
 const unloadedState = {
   isApiLoading: false,
   cryptoResult: [],
-  lastRefreshedAt: new Date(),
   error: undefined,
 };
 

@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { getCryptoData } from '../redux/actions/crypto';
+import { getCryptoData } from '../../redux/actions/crypto';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { DataGrid } from './DataGrid';
-import { columns } from './Columns';
+import { DataGrid } from '../grid/DataGrid';
+import { columns } from '../grid/Columns';
 import { Button } from '@mui/material';
+import { Loading } from '../common/Loading';
 
 export default function HomePage() {
     const limit = 50
@@ -26,6 +27,7 @@ export default function HomePage() {
     return (
         <div id='divTableContainer'>
             <DataGrid columns={columns} data={cryptoResult} />
+            <Loading show={isApiLoading} />
             <Button variant="contained" color="success" onClick={handleLoadMore}>Load More</Button>
         </div>
     )
